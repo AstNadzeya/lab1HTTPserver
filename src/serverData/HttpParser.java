@@ -5,6 +5,8 @@ import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+///////////-----------!!!!!TEST sdelat!!!!!-------------\\\\\\\\\\\\\\!!!!
+
 public class HttpParser {
 
 	private static final String[][] httpReplies = { { "200", "OK" }, { "202", "Accepted" },
@@ -39,8 +41,8 @@ public class HttpParser {
 			return 400;
 		}
 
-//		cmd = initial.split("\\s");
-		cmd = initial.split("\\");
+		cmd = initial.split("\\s");
+//		cmd = initial.split(" "); 
 		if (cmd.length != 3) {
 			return 400;
 		}
@@ -55,7 +57,7 @@ public class HttpParser {
 			}
 		} else
 			ret = 400;
-
+		
 		if (cmd[0].equals("GET") || cmd[0].equals("HEAD")) {
 			method = cmd[0];
 
@@ -64,14 +66,13 @@ public class HttpParser {
 				url = cmd[1];
 			else {
 				url = URLDecoder.decode(cmd[1].substring(0, idx), "ISO-8859-1");
-				prms = cmd[1].substring(idx +1).split("&");
+				prms = cmd[1].substring(idx + 1).split("&");
 				
 				params = new Hashtable();
 				for (i = 0; i < prms.length; i++) {
 					temp = prms[i].split("=");
 					if (temp.length == 2) {
-						// we use ISO-8859-1 as temporary charset and then
-						// String.getBytes("ISO-8859-1") to get the data
+						
 						params.put(URLDecoder.decode(temp[0], "ISO-8859-1"), URLDecoder.decode(temp[1], "ISO-8859-1"));
 					} else if (temp.length == 1 && prms[i].indexOf('=') == prms[i].length() - 1) {
 						// handle empty string separatedly
@@ -79,11 +80,16 @@ public class HttpParser {
 					}
 				}
 			}
+			
+			//parsing Headers
 			parseHeaders();
+			
 			if (headers == null)
 				ret = 400;
+			
 		} else if (cmd[0].equals("POST")) {
 			ret = 501;
+			
 		} else if (ver[0] == 1 && ver[1] >= 1) {
 			if (cmd[0].equals("OPTIONS") || cmd[0].equals("PUT") || cmd[0].equals("DELETE") || cmd[0].equals("TRACE")
 					|| cmd[0].equals("CONNECT")) {
@@ -148,18 +154,7 @@ public class HttpParser {
 		return ver[0] + "." + ver[1];
 	}
 
-	public int compareVersion(int major, int minor) {
-		if (major < ver[0])
-			return -1;
-		else if (major > ver[0])
-			return 1;
-		else if (minor < ver[1])
-			return -1;
-		else if (minor > ver[1])
-			return 1;
-		else
-			return 0;
-	}
+	
 
 	public static String getHttpReply(int codevalue) {
 		String key, ret;

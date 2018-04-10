@@ -1,18 +1,11 @@
 package serverData;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class ThreadedEchoServer extends Thread{
 	
-	/** Создание обработчика 
-	 * @param i the incoming socket 
-	 * @param с the counter for the handlers (used in prompts)
-	 * 
-	 */
+
 	
 	private Socket client;
 	private int counter;
@@ -37,7 +30,7 @@ public class ThreadedEchoServer extends Thread{
 			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			
 
-			out.println("Hello! Write something...");
+//			out.println("Hello! Write something...");
 
 			boolean done = false;
 			while (!done) {
@@ -48,10 +41,11 @@ public class ThreadedEchoServer extends Thread{
 					done = true;
 				else {
 					int rec = request.parseRequest();
-					out.print(request.getHttpReply(rec));
+					out.println(request.getHttpReply(rec));
+					out.println(request.getDateHeader());
 					
-					
-					out.println("Echo: " + str);
+//					out.println("Echo: " + str);
+					out.println(str);
 					if (str.trim().equals("bye"))
 						done = true;
 				
