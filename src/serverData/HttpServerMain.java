@@ -1,38 +1,48 @@
 package serverData;
 
+import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import java.util.Date;
+import java.util.*;
 
+import javax.swing.*;
 
 public class HttpServerMain {
 
 public static void main(String[] args) {
+	
+	JFrame frame = new HttpServerFrame();
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setLocation(950,500);
+	frame.show();
 
 
-		try {
-
-			int i = 1;
-			ServerSocket server = new ServerSocket(8080);
-//			ServerSocket server = new ServerSocket(8080, 0, InetAddress.getByName("localhost"));
-
-			while (true) {
-				
-				System.out.println("Spawning: " + i);
-				Thread t = new ThreadedEchoServer(server.accept(), i);
-				t.start();
-				i++;
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
+//		try {
+//
+//			int i = 1;
+//			ServerSocket server = new ServerSocket(8080);
+////			ServerSocket server = new ServerSocket(8080, 0, InetAddress.getByName("localhost"));
+//
+//			while (true) {
+//				
+//				System.out.println("Spawning: " + i);
+//				Thread t = new ThreadedEchoServer(server.accept(), i);
+//				t.start();
+//				i++;
+//			}
+//
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//		}
 
 
 	}
 
 }
+
+
 
 //ServerSocket server = new ServerSocket(99);
 //System.out.println("Listening for connection on port 99 ....");
@@ -54,7 +64,7 @@ public static void main(String[] args) {
 //
 //	public static void main(String args[]) {
 //		try {
-//			int i = 0; // счётчик подключений
+//			int i = 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 //			ServerSocket server = new ServerSocket(8080, 0, InetAddress.getByName("localhost"));
 //
@@ -97,7 +107,7 @@ public static void main(String[] args) {
 //				String in = is.readLine();
 //				
 //								
-//				// завершаем соединение
+//				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //				if (in.trim().equals("bye")) {
 //					s.close();
 //

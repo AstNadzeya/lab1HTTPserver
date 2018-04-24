@@ -3,9 +3,9 @@ package serverData;
 import java.io.*;
 import java.net.URL;
 
-public class EchoPostHandler {
+public class PostHandler {
 
-	public EchoPostHandler(StringBuffer strBuff)
+	public PostHandler(StringBuffer strBuff)
 	{
 		
 	}

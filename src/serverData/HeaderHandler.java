@@ -2,11 +2,11 @@ package serverData;
 
 import java.io.*;
 
-public class EchoHeaderHandler {
+public class HeaderHandler {
 
 	BufferedWriter resp;
 	
-	EchoHeaderHandler(OutputStream out){
+	HeaderHandler(OutputStream out){
 
 		
 	}

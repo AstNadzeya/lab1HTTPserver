@@ -3,10 +3,10 @@ package serverData;
 import java.io.*;
 import java.net.*;
 
-public class EchoGetHandler {
+public class GetHandler {
 	
 	
-	EchoGetHandler(){
+	GetHandler(){
 
 	}
 	
